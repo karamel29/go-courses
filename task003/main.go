@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"unicode/utf8"
 )
 
 // function that returns an average value of array
@@ -20,20 +21,20 @@ func avgArrays(s [6]int) float64 {
 func maxString(words []string) string {
 	var maxWord string
 	for _, word := range words {
-		if len(word) > len(maxWord) {
-			maxWord = word
-		}
+	 if utf8.RuneCountInString(word) > utf8.RuneCountInString(maxWord) {
+	  maxWord = word
+	 }
 	}
 	return maxWord
-}
+   }
 
 // function that returns the copy of the original slice in reverse order
 func reverse(numbers []int64) []int64 {
-	for i := 0; i < len(numbers)/2; i++ {
-		j := len(numbers) - i - 1
-		numbers[i], numbers[j] = numbers[j], numbers[i]
+	reversed := make([]int64, len(numbers))
+	for i := 0; i < len(numbers); i++ {
+		reversed[i] = numbers[len(numbers) - 1 - i]
 	}
-	return numbers
+	return reversed
 }
 
 // function that prints map values sorted in order of increasing keys
@@ -55,7 +56,7 @@ func main() {
 	y := avgArrays(z)
 	fmt.Println("An average value of array:", y)
 
-	words1 := []string{"one", "two", "three"}
+	words1 := []string{"从", "two", "three"}
 	w := maxString(words1)
 	fmt.Println("The longest word:", w)
 
@@ -64,8 +65,10 @@ func main() {
 	fmt.Println("The longest word of two equals:", maxWord1)
 
 	r := []int64{1, 2, 5, 15}
+	fmt.Println("Original slice", r)
 	n := reverse(r)
 	fmt.Println("The copy of the original slice in reverse order:", n)
+	fmt.Println("Original slice after reverse", r)
 
 	key1 := map[int]string{2: "a", 0: "b", 1: "c"}
 	printSorted(key1)
