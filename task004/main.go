@@ -12,44 +12,44 @@ type Shape interface {
 }
 
 type Circle struct {
-	radius float64
+	Radius float64
 }
 
 //Print information about radius
 func (c Circle) String() string {
-	return fmt.Sprintf("Cirlce radius: %0.2f", c.radius)
+	return fmt.Sprintf("Cirlce radius: %0.2f", c.Radius)
 }
 
 //Calculation of perimeter for struct Circle
 func (c Circle) Perimeter() float64 {
-	return 2 * math.Pi * c.radius
+	return 2 * math.Pi * c.Radius
 }
 
 //Calculation of area for struct Circle
 func (c Circle) Area() float64 {
-	r := math.Pow(c.radius, 2)
+	r := math.Pow(c.Radius, 2)
 	return r * math.Pi
 }
 
 type Rectangle struct {
-	height float64
-	width  float64
+	Height float64
+	Width  float64
 }
 
 //Print information about height and width
 func (r Rectangle) String() string {
-	return fmt.Sprintf("Rectangle height %0.2f and width %0.2f", r.height, r.width)
+	return fmt.Sprintf("Rectangle height %0.2f and width %0.2f", r.Height, r.Width)
 }
 
 //Calculation of perimeter for struct Rectangle
 func (r Rectangle) Perimeter() float64 {
-	a := r.width + r.height
+	a := r.Width + r.Height
 	return 2 * a
 }
 
 //Calculation of area for struct Rectangle
 func (r Rectangle) Area() float64 {
-	return r.width * r.height
+	return r.Width * r.Height
 }
 
 func DescribeShape(s Shape) {
@@ -59,10 +59,10 @@ func DescribeShape(s Shape) {
 }
 
 func main() {
-	c := Circle{radius: 6}
+	c := Circle{Radius: 6}
 	r := Rectangle{
-		height: 8,
-		width:  2,
+		Height: 8,
+		Width:  2,
 	}
 	DescribeShape(c)
 	DescribeShape(r)
