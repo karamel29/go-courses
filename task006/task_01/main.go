@@ -8,18 +8,13 @@ import (
 )
 
 func requestInfo(w http.ResponseWriter, req *http.Request) {
-	var ins response
 
-	m := make(map[string][]string)
-
-	for i, header := range req.Header {
-		m[i] = header
+	ins := response{
+		Host:       req.Host,
+		Headers:    req.Header,
+		RequestURI: req.RequestURI,
+		UserAgent:  req.Header["User-Agent"][0],
 	}
-
-	ins.Host = req.Host
-	ins.Headers = m
-	ins.RequestURI = req.RequestURI
-	ins.UserAgent = req.Header["User-Agent"][0]
 
 	js, err := json.Marshal(ins)
 	if err != nil {
